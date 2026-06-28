@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Eljon Enesi — Business Informatics</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap');
+
+  :root {
+    --bg: #0e0f11;
+    --surface: #16181c;
+    --surface2: #1e2127;
+    --border: #2a2d35;
+    --accent: #4f8ef7;
+    --accent2: #7eb8f7;
+    --text: #e8eaf0;
+    --text2: #9aa0b0;
+    --text3: #5a6070;
+    --white: #ffffff;
+    --tag-bg: #1e2a3d;
+    --tag-color: #7eb8f7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(14,15,17,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--white); letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    color: var(--text2); text-decoration: none; font-size: 13px;
+    font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent2); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center; max-width: 1100px; margin: 0 auto; width: 100%;
+  }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 900; line-height: 1.0;
+    color: var(--white); letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .hero-name span { color: var(--accent); }
+  .hero-desc {
+    color: var(--text2); font-size: 16px; line-height: 1.75;
+    max-width: 480px; margin-bottom: 36px;
+  }
+  .hero-links { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 24px; border-radius: 6px;
+    font-size: 13px; font-weight: 600; text-decoration: none;
+    transition: all 0.2s; cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--accent); color: var(--white); }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent; color: var(--text2);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px 24px;
+    transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-color: var(--accent); }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px; font-weight: 700; color: var(--white);
+    line-height: 1; margin-bottom: 6px;
+  }
+  .stat-number span { color: var(--accent); font-size: 28px; }
+  .stat-label { font-size: 12px; color: var(--text3); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 48px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-header { margin-bottom: 56px; }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px; font-weight: 700; color: var(--white);
+    letter-spacing: -0.02em; line-height: 1.15;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--bg); }
+  .exp-list { display: flex; flex-direction: column; gap: 2px; }
+  .exp-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .exp-item:hover { border-color: var(--accent); }
+  .exp-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    padding: 28px 32px; cursor: pointer; gap: 24px;
+  }
+  .exp-left { flex: 1; }
+  .exp-company {
+    font-size: 18px; font-weight: 700; color: var(--white);
+    margin-bottom: 4px; letter-spacing: -0.01em;
+  }
+  .exp-role {
+    font-size: 14px; color: var(--accent2); font-weight: 500; margin-bottom: 6px;
+  }
+  .exp-meta { font-size: 12px; color: var(--text3); }
+  .exp-toggle {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--surface2); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: all 0.2s; margin-top: 4px;
+    color: var(--text2); font-size: 14px;
+  }
+  .exp-item.open .exp-toggle { background: var(--accent); border-color: var(--accent); color: white; transform: rotate(45deg); }
+  .exp-body {
+    display: none; padding: 0 32px 28px; border-top: 1px solid var(--border);
+    padding-top: 24px;
+  }
+  .exp-item.open .exp-body { display: block; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .exp-bullets li {
+    color: var(--text2); font-size: 14px; line-height: 1.65;
+    padding-left: 20px; position: relative;
+  }
+  .exp-bullets li::before {
+    content: '–'; position: absolute; left: 0; color: var(--accent); font-weight: 700;
+  }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .tag {
+    background: var(--tag-bg); color: var(--tag-color);
+    font-size: 11px; font-weight: 600; padding: 4px 10px;
+    border-radius: 4px; letter-spacing: 0.04em;
+  }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--surface); }
+  .edu-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 12px; padding: 40px;
+  }
+  .edu-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 32px; gap: 24px; flex-wrap: wrap;
+  }
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 700; color: var(--white);
+    letter-spacing: -0.02em; margin-bottom: 6px;
+  }
+  .edu-school { font-size: 15px; color: var(--accent2); font-weight: 500; margin-bottom: 4px; }
+  .edu-meta { font-size: 13px; color: var(--text3); }
+  .edu-badge {
+    background: var(--tag-bg); border: 1px solid var(--accent);
+    border-radius: 8px; padding: 12px 20px; text-align: center; flex-shrink: 0;
+  }
+  .edu-badge-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; }
+  .edu-badge-value { font-size: 22px; font-weight: 700; color: var(--accent2); }
+
+  .edu-thesis {
+    background: var(--surface2); border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0; padding: 16px 20px; margin-bottom: 32px;
+  }
+  .edu-thesis-label { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .edu-thesis-text { font-size: 14px; color: var(--text2); font-style: italic; }
+
+  .curriculum-title {
+    font-size: 13px; font-weight: 700; color: var(--white); text-transform: uppercase;
+    letter-spacing: 0.08em; margin-bottom: 20px;
+  }
+  .curriculum-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px; margin-bottom: 32px;
+  }
+  .curriculum-item {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 10px 14px;
+    font-size: 12px; color: var(--text2); line-height: 1.4;
+  }
+  .curriculum-item strong { display: block; font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+
+  .career-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .career-item {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px 20px;
+  }
+  .career-item-icon { font-size: 20px; margin-bottom: 8px; }
+  .career-item-title { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+  .career-item-desc { font-size: 12px; color: var(--text3); line-height: 1.5; }
+
+  /* ── CERTIFICATIONS ── */
+  #certifications { background: var(--bg); }
+  .cert-groups { display: flex; flex-direction: column; gap: 40px; }
+  .cert-group-title {
+    font-size: 12px; font-weight: 700; color: var(--text3);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 16px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+  .cert-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px 22px;
+    display: flex; align-items: flex-start; gap: 16px;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .cert-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .cert-issuer-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+    background: var(--surface2); border: 1px solid var(--border);
+  }
+  .cert-name { font-size: 13px; font-weight: 600; color: var(--white); line-height: 1.4; margin-bottom: 4px; }
+  .cert-issuer-name { font-size: 11px; color: var(--accent2); margin-bottom: 2px; }
+  .cert-date { font-size: 11px; color: var(--text3); }
+  .cert-view {
+    margin-top: 8px; font-size: 11px; font-weight: 600; color: var(--accent);
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+
+  /* ── CERT MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+    align-items: center; justify-content: center; padding: 32px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; max-width: 860px; width: 100%;
+    max-height: 90vh; overflow-y: auto; position: relative;
+  }
+  .modal-header {
+    padding: 24px 28px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .modal-title { font-size: 16px; font-weight: 700; color: var(--white); }
+  .modal-subtitle { font-size: 13px; color: var(--text2); margin-top: 2px; }
+  .modal-close {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text2); cursor: pointer; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: all 0.2s;
+  }
+  .modal-close:hover { background: var(--accent); border-color: var(--accent); color: white; }
+  .modal-body { padding: 28px; }
+  .modal-img-wrap {
+    background: var(--bg); border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--border); text-align: center; padding: 16px;
+  }
+  .modal-img-wrap img { max-width: 100%; border-radius: 6px; }
+  .modal-no-preview {
+    padding: 60px 20px; text-align: center;
+  }
+  .modal-no-preview-icon { font-size: 48px; margin-bottom: 16px; }
+  .modal-no-preview-text { color: var(--text2); font-size: 15px; margin-bottom: 8px; }
+  .modal-no-preview-sub { color: var(--text3); font-size: 13px; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--surface); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+  .skill-group {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 10px; padding: 24px;
+  }
+  .skill-group-title {
+    font-size: 11px; font-weight: 700; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text2); font-size: 12px; font-weight: 500;
+    padding: 5px 12px; border-radius: 20px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg); border-top: 1px solid var(--border);
+    padding: 48px 48px; text-align: center;
+  }
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 8px;
+  }
+  .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .footer-links a {
+    color: var(--text2); text-decoration: none; font-size: 13px; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--accent2); }
+  .footer-copy { font-size: 12px; color: var(--text3); }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    height: 1px; background: var(--border); max-width: 1100px;
+    margin: 0 auto;
+  }
+  /* ── MOBILE ── */
+@media (max-width: 768px) {
+
+  /* Nav — hide links, just show logo */
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+
+  /* Hero */
+  #hero { padding: 100px 20px 60px; min-height: auto; }
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-name { font-size: 52px; }
+  .hero-desc { font-size: 15px; max-width: 100%; }
+  .hero-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat-card { padding: 20px 16px; }
+  .stat-number { font-size: 32px; }
+
+  /* Sections */
+  section { padding: 64px 20px; }
+  .section-title { font-size: 28px; }
+
+ /* Experience */
+  .exp-header { padding: 20px; gap: 12px; }
+  .exp-company { font-size: 16px; }
+  .exp-body { padding: 0 20px 20px; padding-top: 16px; }
+
+  /* Education */
+  .edu-card { padding: 24px 20px; }
+  .edu-top { flex-direction: column; gap: 16px; }
+  .edu-degree { font-size: 20px; }
+  .edu-badge { align-self: flex-start; }
+  .curriculum-grid { grid-template-columns: 1fr; }
+  .career-grid { grid-template-columns: 1fr; }
+
+  /* Certifications */
+  .cert-grid { grid-template-columns: 1fr; }
+
+  /* Skills */
+  .skills-grid { grid-template-columns: 1fr; }
+
+  /* Modal */
+  .modal-overlay { padding: 16px; align-items: flex-end; }
+  .modal-box { max-height: 85vh; border-radius: 16px 16px 0 0; }
+
+  /* Footer */
+  footer { padding: 40px 20px; }
+  .footer-links { flex-direction: column; gap: 12px; }
+
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">EE</div>
+  <div class="nav-links">
+    <a href="#hero">Home</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#skills">Skills</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">Business Informatics Graduate ·  Soest, Germany</div>
+      <h1 class="hero-name">Eljon<br><span>Enesi</span></h1>
+      <p class="hero-desc">
+        SAP ERP administrator, web developer, and IT infrastructure specialist.
+        I bridge the gap between enterprise systems and hands-on technical operations —
+        from configuring S/4HANA modules to building internal web tools and managing
+        Active Directory environments.
+      </p>
+      <div class="hero-links">
+        <a class="btn btn-primary" href="mailto:eljonenesi9@gmail.com">✉ Get in touch</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/eljonenesi/" target="_blank">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">3<span>+</span></div>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">10<span>+</span></div>
+        <div class="stat-label">Certifications</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Companies & Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Languages</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Career</div>
+      <h2 class="section-title">Work Experience</h2>
+    </div>
+    <div class="exp-list">
+
+      <!-- One Albania -->
+      <div class="exp-item open">
+        <div class="exp-header" onclick="toggleExp(this)">
+          <div class="exp-left">
+            <div class="exp-company">One Albania</div>
+            <div class="exp-role">IT Specialist</div>
+            <div class="exp-meta">May 2025 – Present · Tirana, Albania</div>
+          </div>
+          <div class="exp-toggle">+</div>
+        </div>
+        <div class="exp-body">
+          <ul class="exp-bullets">
+            <li>Managed end-to-end IT infrastructure including Active Directory administration, domain enrollment of company devices, group policy configuration, and Microsoft 365 user provisioning and troubleshooting.</li>
+            <li>Administered and customized SAP ERP modules to streamline internal business processes, reporting, and cross-departmental workflows.</li>
+            <li>Developed and maintained internal web tools and dashboards using HTML, CSS, and JavaScript, improving operational visibility and automating routine reporting tasks.</li>
+            <li>Supported network operations including proxy configuration, physical rack work, cable patching, and basic switching to maintain reliable connectivity across the organization.</li>
+            <li>Managed IT support tickets through Jira, coordinated hardware and software procurement, and maintained documentation for system configurations and IT procedures.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">SAP ERP</span>
+            <span class="tag">Active Directory</span>
+            <span class="tag">Microsoft 365</span>
+            <span class="tag">Jira</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">HTML/CSS</span>
+            <span class="tag">Network / Proxy</span>
+            <span class="tag">VS Code</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fintrade -->
+      <div class="exp-item">
+        <div class="exp-header" onclick="toggleExp(this)">
+          <div class="exp-left">
+            <div class="exp-company">Fintrade LTD.</div>
+            <div class="exp-role">Information Technology Specialist</div>
+            <div class="exp-meta">February 2024 – August 2024 · Tirana, Albania</div>
+          </div>
+          <div class="exp-toggle">+</div>
+        </div>
+        <div class="exp-body">
+          <ul class="exp-bullets">
+            <li>Managed IT procurement processes including hardware and software acquisition, ensuring timely delivery and cost efficiency.</li>
+            <li>Administered Tradogram procurement platform, optimizing supply chain management workflows and system configurations.</li>
+            <li>Provided technical support and troubleshooting across the organization, minimizing downtime and ensuring smooth operations.</li>
+            <li>Developed and maintained documentation for IT procedures and system configurations, ensuring compliance and consistency.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Tradogram</span>
+            <span class="tag">IT Procurement</span>
+            <span class="tag">Technical Support</span>
+            <span class="tag">Documentation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Freelance -->
+      <div class="exp-item">
+        <div class="exp-header" onclick="toggleExp(this)">
+          <div class="exp-left">
+            <div class="exp-company">Freelance — E-Commerce & Web Development</div>
+            <div class="exp-role">Web Developer & E-Commerce Specialist</div>
+            <div class="exp-meta">2019 – 2023 · During university studies</div>
+          </div>
+          <div class="exp-toggle">+</div>
+        </div>
+        <div class="exp-body">
+          <ul class="exp-bullets">
+            <li>Built and managed e-commerce websites using HTML, CSS, and JavaScript, handling product listings, payment integrations, and UX optimization.</li>
+            <li>Implemented digital marketing strategies including SEO, Google Analytics, and AI-powered ad campaigns to drive online sales growth.</li>
+            <li>Integrated database-driven back-end logic with front-end interfaces using SQL and JavaScript for dynamic content management.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">HTML/CSS/JS</span>
+            <span class="tag">E-Commerce</span>
+            <span class="tag">SEO</span>
+            <span class="tag">Google Analytics</span>
+            <span class="tag">SQL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EPPC -->
+      <div class="exp-item">
+        <div class="exp-header" onclick="toggleExp(this)">
+          <div class="exp-left">
+            <div class="exp-company">EPPC Albania & Kosovo</div>
+            <div class="exp-role">IT Consultant / Support Specialist</div>
+            <div class="exp-meta">June 2021 – September 2021 · Tirana, Albania</div>
+          </div>
+          <div class="exp-toggle">+</div>
+        </div>
+        <div class="exp-body">
+          <ul class="exp-bullets">
+            <li>Configured and customized Microsoft Dynamics NAV (Navision) ERP systems to support client business operations.</li>
+            <li>Applied Business Informatics knowledge to integrate and optimize business processes with technology solutions.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Microsoft Dynamics NAV</span>
+            <span class="tag">ERP</span>
+            <span class="tag">Business Informatics</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Academic Background</div>
+      <h2 class="section-title">Education</h2>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-top">
+        <div>
+          <div class="edu-degree">Business Administration with Informatics</div>
+          <div class="edu-school">South Westphalia University of Applied Sciences</div>
+          <div class="edu-meta">Bachelor Degree (B.A.) · Soest, Germany · Graduated December 2023</div>
+        </div>
+        <div class="edu-badge">
+          <div class="edu-badge-label">Credits</div>
+          <div class="edu-badge-value">210</div>
+          <div class="edu-badge-label">ECTS</div>
+        </div>
+      </div>
+
+      <div class="edu-thesis">
+        <div class="edu-thesis-label">Bachelor Thesis</div>
+        <div class="edu-thesis-text">Analysis of the Anticipated Impact of MiCA Regulation on the Adoption of Cryptocurrencies</div>
+      </div>
+
+      <div class="curriculum-title">Curriculum — 7 Semesters</div>
+      <div class="curriculum-grid">
+        <div class="curriculum-item"><strong>Semester 1</strong>Business Administration I · Financial Accounting · Business Mathematics · Management Information Systems · IT Introduction</div>
+        <div class="curriculum-item"><strong>Semester 2</strong>Business Administration II · Cost Accounting · Microeconomics · Spreadsheet Problem Solving · Data Management</div>
+        <div class="curriculum-item"><strong>Semester 3</strong>Corporate Finance · B2C Marketing · Macroeconomics · Entrepreneurship & Innovation · Enterprise Resource Planning I</div>
+        <div class="curriculum-item"><strong>Semester 4</strong>B2B Marketing · Logistics · Business Law · E-Business / Web Development · Enterprise Resource Planning II</div>
+        <div class="curriculum-item"><strong>Semester 5</strong>Controlling & Auditing · International Management · Advanced BA & IT Electives</div>
+        <div class="curriculum-item"><strong>Semester 6–7</strong>Advanced BA & IT Electives · Final Thesis & Colloquium</div>
+      </div>
+
+      <div class="curriculum-title">Career Prospects</div>
+      <div class="career-grid">
+        <div class="career-item">
+          <div class="career-item-icon">🏢</div>
+          <div class="career-item-title">ERP / SAP Consultant</div>
+          <div class="career-item-desc">Implementation and administration of enterprise resource planning systems in international business environments.</div>
+        </div>
+        <div class="career-item">
+          <div class="career-item-icon">🌐</div>
+          <div class="career-item-title">IT & Web Specialist</div>
+          <div class="career-item-desc">E-business platforms, web development, and digital solutions aligned with business strategy.</div>
+        </div>
+        <div class="career-item">
+          <div class="career-item-icon">📊</div>
+          <div class="career-item-title">Business Intelligence Analyst</div>
+          <div class="career-item-desc">Data management, business intelligence, and analytical problem-solving for data-driven decision making.</div>
+        </div>
+        <div class="career-item">
+          <div class="career-item-icon">🌍</div>
+          <div class="career-item-title">International IT Management</div>
+          <div class="career-item-desc">Cross-border IT operations management, with strong intercultural competencies from a multicultural academic environment.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Credentials</div>
+      <h2 class="section-title">Certifications</h2>
+    </div>
+
+    <div class="cert-groups">
+
+      <!-- SAP -->
+      <div>
+        <div class="cert-group-title">SAP</div>
+        <div class="cert-grid">
+          <div class="cert-card" onclick="openModal('SAP S/4HANA Asset Management', 'SAP', 'May 2025', null)">
+            <div class="cert-issuer-icon">🟦</div>
+            <div>
+              <div class="cert-name">Implementing Asset Management Processes in SAP S/4HANA Cloud</div>
+              <div class="cert-issuer-name">SAP — Record of Achievement</div>
+              <div class="cert-date">Issued May 2025 · Expires May 2026</div>
+              <div class="cert-view">View credential ↗</div>
+            </div>
+          </div>
+          <div class="cert-card" onclick="openModal('Discovering SAP S/4HANA Service', 'SAP', 'May 2025', null)">
+            <div class="cert-issuer-icon">🟦</div>
+            <div>
+              <div class="cert-name">Discovering SAP S/4HANA Service</div>
+              <div class="cert-issuer-name">SAP — Record of Achievement</div>
+              <div class="cert-date">Issued May 2025</div>
+              <div class="cert-view">View credential ↗</div>
+            </div>
+          </div>
+          <div class="cert-card" onclick="openModal('ABAP Programming on SAP BTP', 'SAP', 'May 2025', null)">
+            <div class="cert-issuer-icon">🟦</div>
+            <div>
+              <div class="cert-name">Learning the Basics of ABAP Programming on SAP BTP</div>
+              <div class="cert-issuer-name">SAP — Record of Achievement</div>
+              <div class="cert-date">Issued May 2025</div>
+              <div class="cert-view">View credential ↗</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Google -->
+      <div>
+        <div class="cert-group-title">Google</div>
+        <div class="cert-grid">
+          <div class="cert-card" onclick="openModal('Google Analytics Individual Qualification', 'Google', 'Apr 2025', null)">
+            <div class="cert-issuer-icon">🔴</div>
+            <div>
+              <div class="cert-name">Google Analytics Individual Qualification</div>
+              <div class="cert-issuer-name">Google</div>
+              <div class="cert-date">Issued Apr 2025</div>
+              <div class="cert-view">View credential ↗</div>
+            </div>
+          </div>
+          <div class="cert-card" onclick="openModal('AI-Powered Shopping Ads Certification', 'Google Digital Academy (Skillshop)', 'May 2025', null)">
+            <div class="cert-issuer-icon">🔴</div>
+            <div>
+              <div class="cert-name">AI-Powered Shopping Ads Certification</div>
+              <div class="cert-issuer-name">Google Digital Academy (Skillshop)</div>
+              <div class="cert-date">Issued May 2025 · Expires May 2026</div>
+              <div class="cert-view">View credential ↗</div>
+            </div>
+          </div>
+          <div class="cert-card" onclick="openModal('Manage GA4 Data and Learn to Read Reports', 'Google Digital Academy (Skillshop)', 'May 2025', null)">
+            <div class="cert-issuer-icon">🔴</div>
+            <div>
+              <div class="cert-name">Manage GA4 Data and Learn to Read Reports</div>
+              <div class="cert-issuer-name">Google Digital Academy (Skillshop)</div>
+              <div class="cert-date">Issued May 2025 · Expires May 2026</div>
+              <div class="cert-view">View credential ↗</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cisco -->
+      <div>
+        <div class="cert-group-title">Cisco</div>
+        <div class="cert-grid">
+          <div class="cert-card" onclick="openModal('Introduction to Cybersecurity', 'Cisco Networking Academy', 'Oct 2023', null)">
+            <div class="cert-issuer-icon">🔵</div>
+            <div>
+              <div class="cert-name">Introduction to Cybersecurity</div>
+              <div class="cert-issuer-name">Cisco Networking Academy</div>
+              <div class="cert-date">Issued Oct 2023</div>
+              <div class="cert-view">View credential ↗</div>
+            </div>
+          </div>
+          <div class="cert-card" onclick="openModal('IoT and Digital Transformation', 'Cisco Networking Academy', 'Oct 2023', null)">
+            <div class="cert-issuer-icon">🔵</div>
+            <div>
+              <div class="cert-name">IoT and Digital Transformation</div>
+              <div class="cert-issuer-name">Cisco Networking Academy</div>
+              <div class="cert-date">Issued Oct 2023</div>
+              <div class="cert-view">View credential ↗</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other -->
+      <div>
+        <div class="cert-group-title">Other</div>
+        <div class="cert-grid">
+          <div class="cert-card" onclick="openModal('Leadership Development', 'University of Oxford (edX Verified)', 'Jun 2026', null)">
+            <div class="cert-issuer-icon">🟤</div>
+            <div>
+              <div class="cert-name">Leadership Development — edX Verified Certificate</div>
+              <div class="cert-issuer-name">University of Oxford</div>
+              <div class="cert-date">Issued Jun 2026</div>
+              <div class="cert-view">View credential ↗</div>
+            </div>
+          </div>
+          <div class="cert-card" onclick="openModal('Cyber Security / Stay Safe Online', 'The Open University', 'Jan 2025', null)">
+            <div class="cert-issuer-icon">🟣</div>
+            <div>
+              <div class="cert-name">Cyber Security / Stay Safe Online</div>
+              <div class="cert-issuer-name">The Open University</div>
+              <div class="cert-date">Issued Jan 2025</div>
+              <div class="cert-view">View credential ↗</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Capabilities</div>
+      <h2 class="section-title">Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">ERP & Enterprise Systems</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SAP S/4HANA</span>
+          <span class="skill-tag">SAP BTP</span>
+          <span class="skill-tag">ABAP Basics</span>
+          <span class="skill-tag">Microsoft Dynamics NAV</span>
+          <span class="skill-tag">Tradogram</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Web Development</div>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">VS Code</span>
+          <span class="skill-tag">E-Commerce Platforms</span>
+          <span class="skill-tag">UX/UI Basics</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">IT Infrastructure</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Active Directory</span>
+          <span class="skill-tag">Microsoft 365</span>
+          <span class="skill-tag">Domain Management</span>
+          <span class="skill-tag">Network / Proxy</span>
+          <span class="skill-tag">Physical Rack & Cabling</span>
+          <span class="skill-tag">Hardware Procurement</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Data & Analytics</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Google Analytics 4</span>
+          <span class="skill-tag">Database Management</span>
+          <span class="skill-tag">KNIME</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Digital Marketing</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SEO</span>
+          <span class="skill-tag">AI-Powered Ads</span>
+          <span class="skill-tag">Google Skillshop</span>
+          <span class="skill-tag">Social Media Campaigns</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Tools & Workflow</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Jira</span>
+          <span class="skill-tag">Cybersecurity Fundamentals</span>
+          <span class="skill-tag">Microsoft Office</span>
+          <span class="skill-tag">IoT Basics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Eljon Enesi</div>
+  <div class="footer-links">
+    <a href="mailto:eljonenesi9@gmail.com">eljonenesi9@gmail.com</a>
+    <a href="https://www.linkedin.com/in/eljonenesi/" target="_blank">LinkedIn</a>
+    <a href="#hero">Back to top ↑</a>
+  </div>
+  <div class="footer-copy">IT Specialist · SAP · Web Development · Tirana, Albania</div>
+</footer>
+
+<!-- CERT MODAL -->
+<div class="modal-overlay" id="certModal" onclick="closeModalOutside(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-subtitle" id="modalSubtitle"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-img-wrap" id="modalImgWrap">
+        <div class="modal-no-preview">
+          <div class="modal-no-preview-icon">📄</div>
+          <div class="modal-no-preview-text">Credential available on LinkedIn</div>
+          <div class="modal-no-preview-sub">To view the full certificate, visit my LinkedIn profile and navigate to the Licenses & Certifications section.</div>
+          <br>
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/eljonenesi/" target="_blank" style="display:inline-flex;margin-top:8px;">View on LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Expand/collapse experience
+  function toggleExp(header) {
+    const item = header.parentElement;
+    item.classList.toggle('open');
+  }
+
+  // Cert modal
+  function openModal(name, issuer, date, imgSrc) {
+    document.getElementById('modalTitle').textContent = name;
+    document.getElementById('modalSubtitle').textContent = issuer + ' · ' + date;
+    document.getElementById('certModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('certModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('certModal')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent2)' : '';
+    });
+  });
+</script>
+</body>
+</html>
