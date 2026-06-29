@@ -3,27 +3,26 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Eljon Enesi — Business Informatics</title>
+<title>Eljon Enesi — IT Professional</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap');
 
   :root {
-    --bg: #0e0f11;
-    --surface: #16181c;
-    --surface2: #1e2127;
-    --border: #2a2d35;
-    --accent: #4f8ef7;
-    --accent2: #7eb8f7;
-    --text: #e8eaf0;
-    --text2: #9aa0b0;
-    --text3: #5a6070;
-    --white: #ffffff;
-    --tag-bg: #1e2a3d;
-    --tag-color: #7eb8f7;
+    --bg: #100c08;
+    --surface: #1a1410;
+    --surface2: #221a13;
+    --border: #2e2218;
+    --accent: #c49a6c;
+    --accent2: #dbb98a;
+    --text: #ede8e0;
+    --text2: #a89880;
+    --text3: #6a5a48;
+    --white: #f5f0e8;
+    --tag-bg: #2a1e10;
+    --tag-color: #c49a6c;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -37,7 +36,7 @@
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(14,15,17,0.92);
+    background: rgba(16,12,8,0.94);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     display: flex; align-items: center; justify-content: space-between;
@@ -48,13 +47,19 @@
     font-size: 20px; font-weight: 700;
     color: var(--white); letter-spacing: -0.02em;
   }
-  .nav-links { display: flex; gap: 32px; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
   .nav-links a {
     color: var(--text2); text-decoration: none; font-size: 13px;
     font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--accent2); }
+  .nav-cv {
+    background: var(--accent); color: #100c08 !important;
+    padding: 7px 16px; border-radius: 5px; font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cv:hover { background: var(--accent2) !important; color: #100c08 !important; }
 
   /* ── HERO ── */
   #hero {
@@ -62,6 +67,13 @@
     display: flex; flex-direction: column; justify-content: center;
     padding: 120px 48px 80px;
     position: relative; overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 55%; height: 100%;
+    background: radial-gradient(ellipse at 80% 40%, rgba(196,154,108,0.06) 0%, transparent 65%);
+    pointer-events: none;
   }
   .hero-grid {
     display: grid; grid-template-columns: 1fr 1fr;
@@ -84,14 +96,14 @@
     color: var(--text2); font-size: 16px; line-height: 1.75;
     max-width: 480px; margin-bottom: 36px;
   }
-  .hero-links { display: flex; gap: 16px; flex-wrap: wrap; }
+  .hero-links { display: flex; gap: 12px; flex-wrap: wrap; }
   .btn {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 12px 24px; border-radius: 6px;
     font-size: 13px; font-weight: 600; text-decoration: none;
     transition: all 0.2s; cursor: pointer; border: none;
   }
-  .btn-primary { background: var(--accent); color: var(--white); }
+  .btn-primary { background: var(--accent); color: #100c08; }
   .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
   .btn-ghost {
     background: transparent; color: var(--text2);
@@ -106,7 +118,7 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 12px; padding: 28px 24px;
-    transition: border-color 0.2s;
+    transition: border-color 0.3s;
   }
   .stat-card:hover { border-color: var(--accent); }
   .stat-number {
@@ -139,6 +151,7 @@
     border: 1px solid var(--border);
     border-radius: 10px; overflow: hidden;
     transition: border-color 0.2s;
+    margin-bottom: 6px;
   }
   .exp-item:hover { border-color: var(--accent); }
   .exp-header {
@@ -150,9 +163,7 @@
     font-size: 18px; font-weight: 700; color: var(--white);
     margin-bottom: 4px; letter-spacing: -0.01em;
   }
-  .exp-role {
-    font-size: 14px; color: var(--accent2); font-weight: 500; margin-bottom: 6px;
-  }
+  .exp-role { font-size: 14px; color: var(--accent2); font-weight: 500; margin-bottom: 6px; }
   .exp-meta { font-size: 12px; color: var(--text3); }
   .exp-toggle {
     width: 28px; height: 28px; border-radius: 50%;
@@ -161,7 +172,7 @@
     flex-shrink: 0; transition: all 0.2s; margin-top: 4px;
     color: var(--text2); font-size: 14px;
   }
-  .exp-item.open .exp-toggle { background: var(--accent); border-color: var(--accent); color: white; transform: rotate(45deg); }
+  .exp-item.open .exp-toggle { background: var(--accent); border-color: var(--accent); color: #100c08; transform: rotate(45deg); }
   .exp-body {
     display: none; padding: 0 32px 28px; border-top: 1px solid var(--border);
     padding-top: 24px;
@@ -264,10 +275,64 @@
   .cert-name { font-size: 13px; font-weight: 600; color: var(--white); line-height: 1.4; margin-bottom: 4px; }
   .cert-issuer-name { font-size: 11px; color: var(--accent2); margin-bottom: 2px; }
   .cert-date { font-size: 11px; color: var(--text3); }
-  .cert-view {
-    margin-top: 8px; font-size: 11px; font-weight: 600; color: var(--accent);
-    display: inline-flex; align-items: center; gap: 4px;
+  .cert-view { margin-top: 8px; font-size: 11px; font-weight: 600; color: var(--accent); }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--surface); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+  .skill-group {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 10px; padding: 24px;
+    transition: border-color 0.2s;
   }
+  .skill-group:hover { border-color: var(--accent); }
+  .skill-group-title {
+    font-size: 11px; font-weight: 700; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text2); font-size: 12px; font-weight: 500;
+    padding: 5px 12px; border-radius: 20px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--accent); color: var(--accent2); }
+
+  /* ── LANGUAGES ── */
+  #languages { background: var(--bg); }
+  .lang-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .lang-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 24px 28px;
+    transition: border-color 0.2s;
+  }
+  .lang-card:hover { border-color: var(--accent); }
+  .lang-name { font-size: 17px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+  .lang-level { font-size: 12px; color: var(--accent2); font-weight: 500; margin-bottom: 14px; }
+  .lang-bar-bg { background: var(--surface2); border-radius: 4px; height: 4px; overflow: hidden; }
+  .lang-bar { height: 4px; border-radius: 4px; background: var(--accent); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--surface); }
+  .contact-inner {
+    max-width: 640px; margin: 0 auto; text-align: center;
+  }
+  .contact-desc {
+    color: var(--text2); font-size: 16px; line-height: 1.75; margin-bottom: 40px;
+  }
+  .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .contact-item {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px 28px;
+    text-decoration: none; color: var(--text2);
+    font-size: 13px; font-weight: 500;
+    display: flex; align-items: center; gap: 10px;
+    transition: all 0.2s;
+    min-width: 180px; justify-content: center;
+  }
+  .contact-item:hover { border-color: var(--accent); color: var(--accent2); transform: translateY(-2px); }
+  .contact-item-icon { font-size: 18px; }
 
   /* ── CERT MODAL ── */
   .modal-overlay {
@@ -294,37 +359,12 @@
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0; transition: all 0.2s;
   }
-  .modal-close:hover { background: var(--accent); border-color: var(--accent); color: white; }
+  .modal-close:hover { background: var(--accent); border-color: var(--accent); color: #100c08; }
   .modal-body { padding: 28px; }
-  .modal-img-wrap {
-    background: var(--bg); border-radius: 10px; overflow: hidden;
-    border: 1px solid var(--border); text-align: center; padding: 16px;
-  }
-  .modal-img-wrap img { max-width: 100%; border-radius: 6px; }
-  .modal-no-preview {
-    padding: 60px 20px; text-align: center;
-  }
+  .modal-no-preview { padding: 60px 20px; text-align: center; }
   .modal-no-preview-icon { font-size: 48px; margin-bottom: 16px; }
   .modal-no-preview-text { color: var(--text2); font-size: 15px; margin-bottom: 8px; }
   .modal-no-preview-sub { color: var(--text3); font-size: 13px; }
-
-  /* ── SKILLS ── */
-  #skills { background: var(--surface); }
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-  .skill-group {
-    background: var(--bg); border: 1px solid var(--border);
-    border-radius: 10px; padding: 24px;
-  }
-  .skill-group-title {
-    font-size: 11px; font-weight: 700; color: var(--accent);
-    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px;
-  }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .skill-tag {
-    background: var(--surface2); border: 1px solid var(--border);
-    color: var(--text2); font-size: 12px; font-weight: 500;
-    padding: 5px 12px; border-radius: 20px;
-  }
 
   /* ── FOOTER ── */
   footer {
@@ -342,59 +382,44 @@
   .footer-links a:hover { color: var(--accent2); }
   .footer-copy { font-size: 12px; color: var(--text3); }
 
-  /* ── DIVIDER ── */
-  .section-divider {
-    height: 1px; background: var(--border); max-width: 1100px;
-    margin: 0 auto;
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
   /* ── MOBILE ── */
-@media (max-width: 768px) {
-
-  /* Nav — hide links, just show logo */
-  nav { padding: 0 20px; }
-  .nav-links { display: none; }
-
-  /* Hero */
-  #hero { padding: 100px 20px 60px; min-height: auto; }
-  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-  .hero-name { font-size: 52px; }
-  .hero-desc { font-size: 15px; max-width: 100%; }
-  .hero-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .stat-card { padding: 20px 16px; }
-  .stat-number { font-size: 32px; }
-
-  /* Sections */
-  section { padding: 64px 20px; }
-  .section-title { font-size: 28px; }
-
- /* Experience */
-  .exp-header { padding: 20px; gap: 12px; }
-  .exp-company { font-size: 16px; }
-  .exp-body { padding: 0 20px 20px; padding-top: 16px; }
-
-  /* Education */
-  .edu-card { padding: 24px 20px; }
-  .edu-top { flex-direction: column; gap: 16px; }
-  .edu-degree { font-size: 20px; }
-  .edu-badge { align-self: flex-start; }
-  .curriculum-grid { grid-template-columns: 1fr; }
-  .career-grid { grid-template-columns: 1fr; }
-
-  /* Certifications */
-  .cert-grid { grid-template-columns: 1fr; }
-
-  /* Skills */
-  .skills-grid { grid-template-columns: 1fr; }
-
-  /* Modal */
-  .modal-overlay { padding: 16px; align-items: flex-end; }
-  .modal-box { max-height: 85vh; border-radius: 16px 16px 0 0; }
-
-  /* Footer */
-  footer { padding: 40px 20px; }
-  .footer-links { flex-direction: column; gap: 12px; }
-
-}
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    #hero { padding: 100px 20px 60px; min-height: auto; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-name { font-size: 52px; }
+    .hero-desc { font-size: 15px; max-width: 100%; }
+    .hero-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .stat-card { padding: 20px 16px; }
+    .stat-number { font-size: 32px; }
+    section { padding: 64px 20px; }
+    .section-title { font-size: 28px; }
+    .exp-header { padding: 20px; gap: 12px; }
+    .exp-company { font-size: 16px; }
+    .exp-body { padding: 0 20px 20px; padding-top: 16px; }
+    .edu-card { padding: 24px 20px; }
+    .edu-top { flex-direction: column; gap: 16px; }
+    .edu-degree { font-size: 20px; }
+    .edu-badge { align-self: flex-start; }
+    .curriculum-grid { grid-template-columns: 1fr; }
+    .career-grid { grid-template-columns: 1fr; }
+    .cert-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .lang-grid { grid-template-columns: 1fr 1fr; }
+    .modal-overlay { padding: 16px; align-items: flex-end; }
+    .modal-box { max-height: 85vh; border-radius: 16px 16px 0 0; }
+    footer { padding: 40px 20px; }
+    .footer-links { flex-direction: column; gap: 12px; }
+    .contact-links { flex-direction: column; align-items: center; }
+  }
 </style>
 </head>
 <body>
@@ -408,27 +433,27 @@
     <a href="#education">Education</a>
     <a href="#certifications">Certifications</a>
     <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+    <a href="EljonEnesi_CV.pdf" download="EljonEnesi_CV.pdf" class="nav-cv">Download CV ↓</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-grid">
-    <div>
-      <div class="hero-eyebrow">Business Informatics Graduate ·  Soest, Germany</div>
+    <div class="fade-in">
+      <div class="hero-eyebrow">IT Professional · Tirana, Albania</div>
       <h1 class="hero-name">Eljon<br><span>Enesi</span></h1>
       <p class="hero-desc">
-        SAP ERP administrator, web developer, and IT infrastructure specialist.
-        I bridge the gap between enterprise systems and hands-on technical operations —
-        from configuring S/4HANA modules to building internal web tools and managing
-        Active Directory environments.
+        B.A. in Business Informatics from Germany with practical experience across SAP administration, front-end web development, and IT operations. Currently working as IT Specialist at One Albania, supporting enterprise systems and infrastructure day to day.
       </p>
       <div class="hero-links">
         <a class="btn btn-primary" href="mailto:eljonenesi9@gmail.com">✉ Get in touch</a>
+        <a class="btn btn-ghost" href="EljonEnesi_CV.pdf" download="EljonEnesi_CV.pdf">↓ Download CV</a>
         <a class="btn btn-ghost" href="https://www.linkedin.com/in/eljonenesi/" target="_blank">LinkedIn ↗</a>
       </div>
     </div>
-    <div class="hero-stats">
+    <div class="hero-stats fade-in" style="transition-delay:0.15s">
       <div class="stat-card">
         <div class="stat-number">3<span>+</span></div>
         <div class="stat-label">Years of Experience</div>
@@ -439,7 +464,7 @@
       </div>
       <div class="stat-card">
         <div class="stat-number">4</div>
-        <div class="stat-label">Companies & Projects</div>
+        <div class="stat-label">Companies</div>
       </div>
       <div class="stat-card">
         <div class="stat-number">3</div>
@@ -452,14 +477,13 @@
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-inner">
-    <div class="section-header">
+    <div class="section-header fade-in">
       <div class="section-eyebrow">Career</div>
       <h2 class="section-title">Work Experience</h2>
     </div>
     <div class="exp-list">
 
-      <!-- One Albania -->
-      <div class="exp-item open">
+      <div class="exp-item open fade-in">
         <div class="exp-header" onclick="toggleExp(this)">
           <div class="exp-left">
             <div class="exp-company">One Albania</div>
@@ -484,13 +508,11 @@
             <span class="tag">JavaScript</span>
             <span class="tag">HTML/CSS</span>
             <span class="tag">Network / Proxy</span>
-            <span class="tag">VS Code</span>
           </div>
         </div>
       </div>
 
-      <!-- Fintrade -->
-      <div class="exp-item">
+      <div class="exp-item fade-in">
         <div class="exp-header" onclick="toggleExp(this)">
           <div class="exp-left">
             <div class="exp-company">Fintrade LTD.</div>
@@ -515,8 +537,7 @@
         </div>
       </div>
 
-      <!-- Freelance -->
-      <div class="exp-item">
+      <div class="exp-item fade-in">
         <div class="exp-header" onclick="toggleExp(this)">
           <div class="exp-left">
             <div class="exp-company">Freelance — E-Commerce & Web Development</div>
@@ -541,8 +562,7 @@
         </div>
       </div>
 
-      <!-- EPPC -->
-      <div class="exp-item">
+      <div class="exp-item fade-in">
         <div class="exp-header" onclick="toggleExp(this)">
           <div class="exp-left">
             <div class="exp-company">EPPC Albania & Kosovo</div>
@@ -571,12 +591,11 @@
 <!-- EDUCATION -->
 <section id="education">
   <div class="section-inner">
-    <div class="section-header">
+    <div class="section-header fade-in">
       <div class="section-eyebrow">Academic Background</div>
       <h2 class="section-title">Education</h2>
     </div>
-
-    <div class="edu-card">
+    <div class="edu-card fade-in">
       <div class="edu-top">
         <div>
           <div class="edu-degree">Business Administration with Informatics</div>
@@ -589,12 +608,10 @@
           <div class="edu-badge-label">ECTS</div>
         </div>
       </div>
-
       <div class="edu-thesis">
         <div class="edu-thesis-label">Bachelor Thesis</div>
         <div class="edu-thesis-text">Analysis of the Anticipated Impact of MiCA Regulation on the Adoption of Cryptocurrencies</div>
       </div>
-
       <div class="curriculum-title">Curriculum — 7 Semesters</div>
       <div class="curriculum-grid">
         <div class="curriculum-item"><strong>Semester 1</strong>Business Administration I · Financial Accounting · Business Mathematics · Management Information Systems · IT Introduction</div>
@@ -604,7 +621,6 @@
         <div class="curriculum-item"><strong>Semester 5</strong>Controlling & Auditing · International Management · Advanced BA & IT Electives</div>
         <div class="curriculum-item"><strong>Semester 6–7</strong>Advanced BA & IT Electives · Final Thesis & Colloquium</div>
       </div>
-
       <div class="curriculum-title">Career Prospects</div>
       <div class="career-grid">
         <div class="career-item">
@@ -635,18 +651,15 @@
 <!-- CERTIFICATIONS -->
 <section id="certifications">
   <div class="section-inner">
-    <div class="section-header">
+    <div class="section-header fade-in">
       <div class="section-eyebrow">Credentials</div>
       <h2 class="section-title">Certifications</h2>
     </div>
-
     <div class="cert-groups">
-
-      <!-- SAP -->
-      <div>
+      <div class="fade-in">
         <div class="cert-group-title">SAP</div>
         <div class="cert-grid">
-          <div class="cert-card" onclick="openModal('SAP S/4HANA Asset Management', 'SAP', 'May 2025', null)">
+          <div class="cert-card" onclick="openModal('SAP S/4HANA Asset Management', 'SAP', 'May 2025')">
             <div class="cert-issuer-icon">🟦</div>
             <div>
               <div class="cert-name">Implementing Asset Management Processes in SAP S/4HANA Cloud</div>
@@ -655,7 +668,7 @@
               <div class="cert-view">View credential ↗</div>
             </div>
           </div>
-          <div class="cert-card" onclick="openModal('Discovering SAP S/4HANA Service', 'SAP', 'May 2025', null)">
+          <div class="cert-card" onclick="openModal('Discovering SAP S/4HANA Service', 'SAP', 'May 2025')">
             <div class="cert-issuer-icon">🟦</div>
             <div>
               <div class="cert-name">Discovering SAP S/4HANA Service</div>
@@ -664,7 +677,7 @@
               <div class="cert-view">View credential ↗</div>
             </div>
           </div>
-          <div class="cert-card" onclick="openModal('ABAP Programming on SAP BTP', 'SAP', 'May 2025', null)">
+          <div class="cert-card" onclick="openModal('ABAP Programming on SAP BTP', 'SAP', 'May 2025')">
             <div class="cert-issuer-icon">🟦</div>
             <div>
               <div class="cert-name">Learning the Basics of ABAP Programming on SAP BTP</div>
@@ -676,11 +689,10 @@
         </div>
       </div>
 
-      <!-- Google -->
-      <div>
+      <div class="fade-in">
         <div class="cert-group-title">Google</div>
         <div class="cert-grid">
-          <div class="cert-card" onclick="openModal('Google Analytics Individual Qualification', 'Google', 'Apr 2025', null)">
+          <div class="cert-card" onclick="openModal('Google Analytics Individual Qualification', 'Google', 'Apr 2025')">
             <div class="cert-issuer-icon">🔴</div>
             <div>
               <div class="cert-name">Google Analytics Individual Qualification</div>
@@ -689,7 +701,7 @@
               <div class="cert-view">View credential ↗</div>
             </div>
           </div>
-          <div class="cert-card" onclick="openModal('AI-Powered Shopping Ads Certification', 'Google Digital Academy (Skillshop)', 'May 2025', null)">
+          <div class="cert-card" onclick="openModal('AI-Powered Shopping Ads Certification', 'Google Digital Academy (Skillshop)', 'May 2025')">
             <div class="cert-issuer-icon">🔴</div>
             <div>
               <div class="cert-name">AI-Powered Shopping Ads Certification</div>
@@ -698,7 +710,7 @@
               <div class="cert-view">View credential ↗</div>
             </div>
           </div>
-          <div class="cert-card" onclick="openModal('Manage GA4 Data and Learn to Read Reports', 'Google Digital Academy (Skillshop)', 'May 2025', null)">
+          <div class="cert-card" onclick="openModal('Manage GA4 Data and Learn to Read Reports', 'Google Digital Academy (Skillshop)', 'May 2025')">
             <div class="cert-issuer-icon">🔴</div>
             <div>
               <div class="cert-name">Manage GA4 Data and Learn to Read Reports</div>
@@ -710,11 +722,10 @@
         </div>
       </div>
 
-      <!-- Cisco -->
-      <div>
+      <div class="fade-in">
         <div class="cert-group-title">Cisco</div>
         <div class="cert-grid">
-          <div class="cert-card" onclick="openModal('Introduction to Cybersecurity', 'Cisco Networking Academy', 'Oct 2023', null)">
+          <div class="cert-card" onclick="openModal('Introduction to Cybersecurity', 'Cisco Networking Academy', 'Oct 2023')">
             <div class="cert-issuer-icon">🔵</div>
             <div>
               <div class="cert-name">Introduction to Cybersecurity</div>
@@ -723,7 +734,7 @@
               <div class="cert-view">View credential ↗</div>
             </div>
           </div>
-          <div class="cert-card" onclick="openModal('IoT and Digital Transformation', 'Cisco Networking Academy', 'Oct 2023', null)">
+          <div class="cert-card" onclick="openModal('IoT and Digital Transformation', 'Cisco Networking Academy', 'Oct 2023')">
             <div class="cert-issuer-icon">🔵</div>
             <div>
               <div class="cert-name">IoT and Digital Transformation</div>
@@ -735,11 +746,10 @@
         </div>
       </div>
 
-      <!-- Other -->
-      <div>
+      <div class="fade-in">
         <div class="cert-group-title">Other</div>
         <div class="cert-grid">
-          <div class="cert-card" onclick="openModal('Leadership Development', 'University of Oxford (edX Verified)', 'Jun 2026', null)">
+          <div class="cert-card" onclick="openModal('Leadership Development', 'University of Oxford (edX Verified)', 'Jun 2026')">
             <div class="cert-issuer-icon">🟤</div>
             <div>
               <div class="cert-name">Leadership Development — edX Verified Certificate</div>
@@ -748,7 +758,7 @@
               <div class="cert-view">View credential ↗</div>
             </div>
           </div>
-          <div class="cert-card" onclick="openModal('Cyber Security / Stay Safe Online', 'The Open University', 'Jan 2025', null)">
+          <div class="cert-card" onclick="openModal('Cyber Security / Stay Safe Online', 'The Open University', 'Jan 2025')">
             <div class="cert-issuer-icon">🟣</div>
             <div>
               <div class="cert-name">Cyber Security / Stay Safe Online</div>
@@ -759,7 +769,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -767,12 +776,12 @@
 <!-- SKILLS -->
 <section id="skills">
   <div class="section-inner">
-    <div class="section-header">
+    <div class="section-header fade-in">
       <div class="section-eyebrow">Capabilities</div>
       <h2 class="section-title">Skills</h2>
     </div>
     <div class="skills-grid">
-      <div class="skill-group">
+      <div class="skill-group fade-in">
         <div class="skill-group-title">ERP & Enterprise Systems</div>
         <div class="skill-tags">
           <span class="skill-tag">SAP S/4HANA</span>
@@ -782,7 +791,7 @@
           <span class="skill-tag">Tradogram</span>
         </div>
       </div>
-      <div class="skill-group">
+      <div class="skill-group fade-in">
         <div class="skill-group-title">Web Development</div>
         <div class="skill-tags">
           <span class="skill-tag">HTML</span>
@@ -793,7 +802,7 @@
           <span class="skill-tag">UX/UI Basics</span>
         </div>
       </div>
-      <div class="skill-group">
+      <div class="skill-group fade-in">
         <div class="skill-group-title">IT Infrastructure</div>
         <div class="skill-tags">
           <span class="skill-tag">Active Directory</span>
@@ -804,7 +813,7 @@
           <span class="skill-tag">Hardware Procurement</span>
         </div>
       </div>
-      <div class="skill-group">
+      <div class="skill-group fade-in">
         <div class="skill-group-title">Data & Analytics</div>
         <div class="skill-tags">
           <span class="skill-tag">SQL</span>
@@ -813,7 +822,7 @@
           <span class="skill-tag">KNIME</span>
         </div>
       </div>
-      <div class="skill-group">
+      <div class="skill-group fade-in">
         <div class="skill-group-title">Digital Marketing</div>
         <div class="skill-tags">
           <span class="skill-tag">SEO</span>
@@ -822,7 +831,7 @@
           <span class="skill-tag">Social Media Campaigns</span>
         </div>
       </div>
-      <div class="skill-group">
+      <div class="skill-group fade-in">
         <div class="skill-group-title">Tools & Workflow</div>
         <div class="skill-tags">
           <span class="skill-tag">Jira</span>
@@ -830,6 +839,58 @@
           <span class="skill-tag">Microsoft Office</span>
           <span class="skill-tag">IoT Basics</span>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section id="languages">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-eyebrow">Communication</div>
+      <h2 class="section-title">Languages</h2>
+    </div>
+    <div class="lang-grid">
+      <div class="lang-card fade-in">
+        <div class="lang-name">Albanian</div>
+        <div class="lang-level">Native</div>
+        <div class="lang-bar-bg"><div class="lang-bar" style="width:100%"></div></div>
+      </div>
+      <div class="lang-card fade-in">
+        <div class="lang-name">English</div>
+        <div class="lang-level">Fluent — C1</div>
+        <div class="lang-bar-bg"><div class="lang-bar" style="width:90%"></div></div>
+      </div>
+      <div class="lang-card fade-in">
+        <div class="lang-name">German</div>
+        <div class="lang-level">Professional — B2</div>
+        <div class="lang-bar-bg"><div class="lang-bar" style="width:70%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-inner fade-in">
+      <div class="section-eyebrow" style="text-align:center">Get in touch</div>
+      <h2 class="section-title" style="text-align:center;margin-bottom:20px">Let's connect</h2>
+      <p class="contact-desc">
+        Open to new opportunities in IT operations, SAP consulting, and web development roles —
+        especially in international environments. Feel free to reach out.
+      </p>
+      <div class="contact-links">
+        <a class="contact-item" href="mailto:eljonenesi9@gmail.com">
+          <span class="contact-item-icon">✉</span> eljonenesi9@gmail.com
+        </a>
+        <a class="contact-item" href="https://www.linkedin.com/in/eljonenesi/" target="_blank">
+          <span class="contact-item-icon">💼</span> LinkedIn Profile ↗
+        </a>
+        <a class="contact-item" href="https://github.com/eljonenesi123" target="_blank">
+          <span class="contact-item-icon">⌨</span> GitHub ↗
+        </a>
       </div>
     </div>
   </div>
@@ -857,28 +918,23 @@
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body">
-      <div class="modal-img-wrap" id="modalImgWrap">
-        <div class="modal-no-preview">
-          <div class="modal-no-preview-icon">📄</div>
-          <div class="modal-no-preview-text">Credential available on LinkedIn</div>
-          <div class="modal-no-preview-sub">To view the full certificate, visit my LinkedIn profile and navigate to the Licenses & Certifications section.</div>
-          <br>
-          <a class="btn btn-primary" href="https://www.linkedin.com/in/eljonenesi/" target="_blank" style="display:inline-flex;margin-top:8px;">View on LinkedIn ↗</a>
-        </div>
+      <div class="modal-no-preview">
+        <div class="modal-no-preview-icon">📄</div>
+        <div class="modal-no-preview-text">Credential available on LinkedIn</div>
+        <div class="modal-no-preview-sub">Visit my LinkedIn profile and navigate to the Licenses & Certifications section to view the full certificate.</div>
+        <br>
+        <a class="btn btn-primary" href="https://www.linkedin.com/in/eljonenesi/" target="_blank" style="display:inline-flex;margin-top:8px;">View on LinkedIn ↗</a>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  // Expand/collapse experience
   function toggleExp(header) {
-    const item = header.parentElement;
-    item.classList.toggle('open');
+    header.parentElement.classList.toggle('open');
   }
 
-  // Cert modal
-  function openModal(name, issuer, date, imgSrc) {
+  function openModal(name, issuer, date) {
     document.getElementById('modalTitle').textContent = name;
     document.getElementById('modalSubtitle').textContent = issuer + ' · ' + date;
     document.getElementById('certModal').classList.add('active');
@@ -896,16 +952,22 @@
 
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-  // Active nav highlight on scroll
+  // Scroll animations
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Active nav highlight
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
     let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 100) current = s.id;
-    });
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
     navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent2)' : '';
+      if (!a.classList.contains('nav-cv')) {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent2)' : '';
+      }
     });
   });
 </script>
