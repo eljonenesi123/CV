@@ -248,6 +248,44 @@
   .career-item-title { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
   .career-item-desc { font-size: 12px; color: var(--text3); line-height: 1.5; }
 
+  /* ── PROJECTS ── */
+  #projects { background: var(--surface); }
+  .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+  .project-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .project-media {
+    height: 160px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--surface2) 0%, var(--tag-bg) 100%);
+  }
+  .project-media-icon { font-size: 44px; opacity: 0.85; }
+  .project-status {
+    position: absolute; top: 14px; right: 14px;
+    background: rgba(16,12,8,0.75); border: 1px solid var(--accent);
+    color: var(--accent2); font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 4px 10px; border-radius: 20px;
+  }
+  .project-body { padding: 26px 26px 24px; display: flex; flex-direction: column; flex: 1; }
+  .project-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 8px; letter-spacing: -0.01em; }
+  .project-desc { font-size: 13.5px; color: var(--text2); line-height: 1.65; margin-bottom: 18px; flex: 1; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .project-links { display: flex; gap: 10px; }
+  .project-link {
+    flex: 1; text-align: center; text-decoration: none;
+    font-size: 12px; font-weight: 600; padding: 10px 14px;
+    border-radius: 6px; transition: all 0.2s;
+  }
+  .project-link-primary { background: var(--accent); color: #100c08; }
+  .project-link-primary:hover { background: var(--accent2); }
+  .project-link-ghost { background: transparent; color: var(--text2); border: 1px solid var(--border); }
+  .project-link-ghost:hover { border-color: var(--accent); color: var(--accent2); }
+
   /* ── CERTIFICATIONS ── */
   #certifications { background: var(--bg); }
   .cert-groups { display: flex; flex-direction: column; gap: 40px; }
@@ -412,6 +450,7 @@
     .curriculum-grid { grid-template-columns: 1fr; }
     .career-grid { grid-template-columns: 1fr; }
     .cert-grid { grid-template-columns: 1fr; }
+    .project-grid { grid-template-columns: 1fr; }
     .skills-grid { grid-template-columns: 1fr; }
     .lang-grid { grid-template-columns: 1fr 1fr; }
     .modal-overlay { padding: 16px; align-items: flex-end; }
@@ -431,6 +470,7 @@
     <a href="#hero">Home</a>
     <a href="#experience">Experience</a>
     <a href="#education">Education</a>
+    <a href="#projects">Projects</a>
     <a href="#certifications">Certifications</a>
     <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
@@ -463,8 +503,8 @@
         <div class="stat-label">Certifications</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">4</div>
-        <div class="stat-label">Companies</div>
+        <div class="stat-number">2</div>
+        <div class="stat-label">Live Projects</div>
       </div>
       <div class="stat-card">
         <div class="stat-number">3</div>
@@ -644,6 +684,64 @@
           <div class="career-item-desc">Cross-border IT operations management, with strong intercultural competencies from a multicultural academic environment.</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-eyebrow">Web Development</div>
+      <h2 class="section-title">Projects</h2>
+    </div>
+    <div class="project-grid">
+
+      <div class="project-card fade-in">
+        <div class="project-media">
+          <span class="project-status">Live · Client</span>
+          <span class="project-media-icon">🏋️</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Top Level Performance</div>
+          <div class="project-desc">
+            Business website for a strength & conditioning coach in Tirana. Built a multi-page site with a bilingual (EN/AL) interface, an interactive multi-step intake questionnaire that routes leads by email, click-to-call and WhatsApp integration, and social proof sections — designed to convert visitors into coaching clients.
+          </div>
+          <div class="project-tags">
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Lead Gen Form</span>
+            <span class="skill-tag">i18n</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link project-link-primary" href="https://eljonenesi123.github.io/TopLevelPerformance" target="_blank">Visit Site ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-in" style="transition-delay:0.1s">
+        <div class="project-media">
+          <span class="project-status">Live · Personal</span>
+          <span class="project-media-icon">🎬</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Just Pick Something</div>
+          <div class="project-desc">
+            A movie & TV decision-making tool built for indecisive viewers. Features free-text/vibe search, mood-based and genre browsing, a head-to-head "movie battle" bracket game, group swipe-to-decide mode, and mini party games — all powered by the TMDB API with multi-language and region-based streaming support.
+          </div>
+          <div class="project-tags">
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">TMDB API</span>
+            <span class="skill-tag">UX/UI</span>
+            <span class="skill-tag">Responsive</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link project-link-primary" href="https://eljonenesi123.github.io/MovieDecider/" target="_blank">Visit Site ↗</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
